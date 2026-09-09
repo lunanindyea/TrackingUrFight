@@ -1,19 +1,84 @@
-<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fight Tracking — Next Level</title><link rel="stylesheet" href="style.css"></head><body>
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fight Tracking</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 <div id="toast"></div>
-<aside class="side"><div class="brand">🥋 <div><b>FIGHT</b><span>TRACKING</span></div></div><div class="athlete"><div id="avatar">LB</div><div><b id="sideName">Lubna</b><small id="sideBelt">Green Belt</small></div></div>
-<nav><button class="nav active" data-page="dashboard">⌂<span>Overview</span></button><button class="nav" data-page="training">◷<span>Training</span></button><button class="nav" data-page="matches">⚔<span>Matches</span></button><button class="nav" data-page="kicks">↗<span>Techniques</span></button><button class="nav" data-page="belt">🥋<span>Belt Roadmap</span></button><button class="nav" data-page="ranking">♛<span>Ranking</span></button><button class="nav" data-page="achievements">✦<span>Achievements</span></button><button class="nav" data-page="settings">⚙<span>Customize</span></button></nav>
-<div class="sidebottom"><button class="music" id="musicBtn">♫ <span>Putar Lagu</span><em>OFF</em></button><small>Fight Tracking • Next Level</small></div></aside>
-<main class="main"><header class="top"><div><small>ATHLETE PERFORMANCE SYSTEM</small><h1 id="title">Overview</h1></div><div class="actions"><div class="xp">⚡ <b id="xp">0</b> XP</div><button class="round" id="quick">＋</button></div></header>
+<aside class="sidebar">
+  <div class="brand">🥋 <b>FIGHT</b><span>TRACKING</span></div>
+  <div class="profile-mini"><div class="avatar" id="avatar">LB</div><div><b id="miniName">Lubna</b><small id="miniBelt">Green Belt</small></div></div>
+  <nav id="nav">
+    <button class="nav active" data-page="dashboard">⌂ <span>Dashboard</span></button>
+    <button class="nav" data-page="training">◷ <span>Latihan</span></button>
+    <button class="nav" data-page="matches">⚔ <span>Pertandingan</span></button>
+    <button class="nav" data-page="kicks">↗ <span>Tendangan</span></button>
+    <button class="nav" data-page="ranking">♛ <span>Ranking</span></button>
+    <button class="nav" data-page="achievements">✦ <span>Achievement</span></button>
+    <button class="nav" data-page="settings">⚙ <span>Customize</span></button>
+  </nav>
+  <div class="side-bottom"><button id="musicBtn" class="music">♫ <span>Putar Lagu</span><em>OFF</em></button><small>Fight Tracking • v2</small></div>
+</aside>
 
-<section id="dashboard" class="page active"><div class="hero"><div><small>WELCOME BACK, ATHLETE</small><h2>Train hard.<br><span>Fight smarter.</span></h2><p>Build your own training system. Track every rep, every fight, every level.</p><button class="primary" data-go="training">＋ Log Training</button></div><div class="hero-right"><div class="ring"><b id="beltPct">68%</b><small>BLUE BELT</small></div><div class="level"><small>LEVEL</small><strong id="level">12</strong><span>+420 XP this week</span></div></div></div>
-<div class="stats" id="stats"></div><div class="grid"><article class="card"><div class="head"><div><small>WEEKLY LOAD</small><h3>Training Activity</h3></div><button class="ghost" data-go="training">Manage</button></div><div class="chart" id="chart"></div></article><article class="card"><div class="head"><div><small>UP NEXT</small><h3>Schedule</h3></div><button class="ghost" onclick="addSchedule()">＋</button></div><div id="schedule"></div></article></div>
-<div class="grid"><article class="card"><div class="head"><div><small>ROADMAP</small><h3>My Belt Journey</h3></div><button class="ghost" data-go="belt">Open</button></div><div class="beltline" id="miniBelt"></div></article><article class="card"><div class="head"><div><small>PERSONAL BEST</small><h3>Highlights</h3></div></div><div class="highlight"><b id="bestKick">530</b><small>Best kick reps</small></div><div class="highlight"><b id="bestWin">8</b><small>Total wins</small></div></article></div></section>
+<main class="main">
+<header class="top"><div><small class="eyebrow">ATHLETE PERFORMANCE</small><h1 id="pageTitle">Dashboard</h1></div>
+<div class="topright"><div class="xp">⚡ <b id="topXP">0</b> XP</div><button class="round" id="quickAdd">＋</button></div></header>
 
-<section id="training" class="page"><div class="pagehead"><div><small>WORKOUT LOG</small><h2>Training Studio</h2></div><button class="primary" onclick="addTraining()">＋ Add Session</button></div><div class="cards3" id="trainingSummary"></div><article class="card"><div class="head"><h3>Sessions</h3><button class="ghost" onclick="clearTrainings()">Clear all</button></div><div id="trainingRows"></div></article></section>
-<section id="matches" class="page"><div class="pagehead"><div><small>FIGHT RECORD</small><h2>Match Center</h2></div><button class="primary" onclick="addMatch()">＋ Add Match</button></div><div class="matchstats" id="matchStats"></div><article class="card"><div id="matchRows"></div></article></section>
-<section id="kicks" class="page"><div class="pagehead"><div><small>TECHNIQUE ANALYTICS</small><h2>Technique Lab</h2></div><button class="primary" onclick="addKick()">＋ New Technique</button></div><div class="kickgrid" id="kickGrid"></div></section>
-<section id="belt" class="page"><div class="pagehead"><div><small>LONG TERM GOAL</small><h2>Belt Roadmap</h2></div></div><article class="card roadmap"><div id="roadmap"></div></article></section>
-<section id="ranking" class="page"><div class="pagehead"><div><small>CLUB LEADERBOARD</small><h2>Ranking</h2></div><button class="ghost" onclick="toast('Ranking diperbarui')">↻ Refresh</button></div><article class="card"><div id="rankingRows"></div><p class="hint">Demo ranking lokal. Struktur sudah siap untuk dihubungkan ke backend/database.</p></article></section>
-<section id="achievements" class="page"><div class="pagehead"><div><small>LEVEL UP</small><h2>Achievements</h2></div><button class="primary" onclick="addAchievement()">＋ Create</button></div><div class="achgrid" id="achGrid"></div></section>
-<section id="settings" class="page"><div class="pagehead"><div><small>MAKE IT YOURS</small><h2>Customize</h2></div></div><div class="settings"><article class="card"><h3>👤 Athlete Profile</h3><label>Name<input id="sName"></label><label>Initial<input id="sInitial"></label><label>Belt<select id="sBelt"><option>White Belt</option><option>Yellow Belt</option><option>Green Belt</option><option>Blue Belt</option><option>Red Belt</option><option>Black Belt</option></select></label><button class="primary" onclick="saveProfile()">Save Profile</button></article><article class="card"><h3>🎨 Interface</h3><label>Accent<select id="sAccent"><option value="red">Fight Red</option><option value="lime">Energy Lime</option><option value="blue">Combat Blue</option><option value="purple">Power Purple</option></select></label><label>Mode<select id="sMode"><option value="dark">Dark</option><option value="midnight">Midnight</option><option value="light">Light</option></select></label><button class="primary" onclick="saveTheme()">Apply Theme</button></article><article class="card"><h3>🎯 Goals</h3><label>Weekly sessions<input id="sGoal" type="number" min="1"></label><label>Kick reps target<input id="sKickGoal" type="number" min="100"></label><button class="primary" onclick="saveGoals()">Save Goals</button></article><article class="card"><h3>💾 Data</h3><p class="hint">Data disimpan lokal di browser. Bisa diubah kapan saja.</p><button class="danger" onclick="resetAll()">Reset App</button></article></div></section>
-</main><audio id="player" loop></audio><input id="songInput" hidden type="file" accept="audio/*"><script src="app.js"></script></body></html>
+<section id="dashboard" class="page active">
+  <div class="hero">
+    <div><small class="eyebrow">WELCOME BACK</small><h2>Train hard.<br><span>Fight smart.</span></h2><p>Semua progress kamu, bisa kamu atur sendiri.</p><button class="primary" data-go="training">＋ Catat latihan</button></div>
+    <div class="ring"><div><b id="beltPct">68%</b><small id="nextBelt">TO BLUE BELT</small></div></div>
+  </div>
+  <div class="stats" id="stats"></div>
+  <div class="grid2">
+    <article class="card"><div class="head"><div><small>THIS WEEK</small><h3>Training Load</h3></div><button class="ghost" data-go="training">Edit</button></div><div class="bars" id="bars"></div></article>
+    <article class="card"><div class="head"><div><small>NEXT UP</small><h3>Jadwal</h3></div><button class="ghost" data-go="training">Kelola</button></div><div id="dashSchedule"></div></article>
+  </div>
+  <div class="grid2"><article class="card"><div class="head"><div><small>TECHNIQUE</small><h3>Kick Mastery</h3></div><button class="ghost" data-go="kicks">Kelola</button></div><div id="dashKicks"></div></article>
+  <article class="card"><div class="head"><div><small>RECENT</small><h3>Achievements</h3></div><button class="ghost" data-go="achievements">Kelola</button></div><div id="dashAch"></div></article></div>
+</section>
+
+<section id="training" class="page">
+<div class="pagehead"><div><small>WORKOUT LOG</small><h2>Latihan</h2></div><button class="primary" onclick="addTraining()">＋ Tambah</button></div>
+<div class="mini-grid" id="trainingSummary"></div><article class="card"><div class="head"><h3>Semua sesi latihan</h3><button class="ghost" onclick="clearTrainings()">Reset</button></div><div id="trainingRows"></div></article>
+</section>
+
+<section id="matches" class="page">
+<div class="pagehead"><div><small>FIGHT RECORD</small><h2>Pertandingan</h2></div><button class="primary" onclick="addMatch()">＋ Tambah</button></div>
+<div class="matchstats" id="matchStats"></div><article class="card"><div id="matchRows"></div></article>
+</section>
+
+<section id="kicks" class="page">
+<div class="pagehead"><div><small>TECHNIQUE ANALYTICS</small><h2>Tendangan</h2></div><button class="primary" onclick="addKick()">＋ Tambah teknik</button></div>
+<div class="kickgrid" id="kickGrid"></div>
+</section>
+
+<section id="ranking" class="page">
+<div class="pagehead"><div><small>CLUB LEADERBOARD</small><h2>Ranking</h2></div></div>
+<article class="card"><div id="rankRows"></div><p class="hint">Ranking demo — nanti bisa dihubungkan ke database/akun klub.</p></article>
+</section>
+
+<section id="achievements" class="page">
+<div class="pagehead"><div><small>LEVEL UP</small><h2>Achievement</h2></div><button class="primary" onclick="addAchievement()">＋ Tambah</button></div>
+<div class="achgrid" id="achGrid"></div>
+</section>
+
+<section id="settings" class="page">
+<div class="pagehead"><div><small>PERSONALIZE YOUR APP</small><h2>Customize</h2></div></div>
+<div class="settings-grid">
+<article class="card"><h3>👤 Profil atlet</h3><label>Nama<input id="setName"></label><label>Inisial avatar<input id="setInitial"></label><label>Sabuk<select id="setBelt"><option>White Belt</option><option>Yellow Belt</option><option>Green Belt</option><option>Blue Belt</option><option>Red Belt</option><option>Black Belt</option></select></label><button class="primary" onclick="saveProfile()">Simpan profil</button></article>
+<article class="card"><h3>🎨 Tampilan</h3><label>Accent<select id="setAccent"><option value="red">Fight Red</option><option value="lime">Energy Lime</option><option value="blue">Combat Blue</option><option value="purple">Power Purple</option></select></label><label>Mode<select id="setMode"><option value="dark">Dark</option><option value="midnight">Midnight</option><option value="light">Light</option></select></label><button class="primary" onclick="saveTheme()">Terapkan</button></article>
+<article class="card"><h3>🎯 Target mingguan</h3><label>Target sesi latihan<input id="setGoal" type="number" min="1" max="20"></label><label>Target repetisi tendangan<input id="setKickGoal" type="number" min="100" max="10000"></label><button class="primary" onclick="saveGoals()">Simpan target</button></article>
+<article class="card"><h3>💾 Data</h3><p class="hint">Semua perubahan disimpan otomatis di browser dengan localStorage.</p><button class="danger" onclick="resetAll()">Reset semua data</button></article>
+</div>
+</section>
+</main>
+<audio id="player" loop></audio><input hidden id="songInput" type="file" accept="audio/*">
+<script src="app.js"></script>
+</body></html>
